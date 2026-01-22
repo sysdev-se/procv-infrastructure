@@ -39,3 +39,4 @@ Each environment is deployed via GitHub Actions:
 
 ## Local Development
 
+Infrastructure is managed using the Terraform CLI (`terraform` command).
