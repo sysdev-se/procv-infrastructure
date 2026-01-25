@@ -8,6 +8,11 @@ output "project_number" {
   value       = module.project.project_number
 }
 
+output "artifact_registry_url" {
+  description = "Base Artifact Registry URL for dev"
+  value       = module.artifact_registry.repository_url
+}
+
 /*
 # Uncomment when deploying services
 output "frontend_url" {

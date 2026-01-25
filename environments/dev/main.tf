@@ -24,20 +24,44 @@ module "project" {
   billing_account = var.billing_account
 
   labels = {
-    environment = "dev"
+    environment = var.environment
     managed-by  = "terraform"
     application = "procv"
   }
+}
+
+module "artifact_registry" {
+  source = "../../modules/artifact-registry"
+
+  project_id    = module.project.project_id
+  region        = var.region
+  environment   = var.environment
+}
+
+module "server" {
+  source = "../../modules/cloud-run"
+
+  service_name    = "procv-server-dev"
+  project_id      = module.project.project_id
+  region          = var.region
+  container_image = var.server_image
+
+  labels = {
+    environment = var.environment
+    tier        = "server"
+  }
+
+  depends_on = [module.project]
 }
 
 # Note: Initially, you'll only deploy the project module
 # Uncomment the modules below once the project is created and you're ready to deploy services
 
 /*
-module "frontend" {
+module "client" {
   source = "../../modules/cloud-run"
 
-  service_name    = "procv-frontend-dev"
+  service_name    = "procv-client-dev"
   project_id      = module.project.project_id
   region          = var.region
   container_image = var.frontend_image
@@ -48,30 +72,7 @@ module "frontend" {
 
   labels = {
     environment = "dev"
-    tier        = "frontend"
-  }
-
-  depends_on = [module.project]
-}
-
-module "backend" {
-  source = "../../modules/cloud-run"
-
-  service_name    = "procv-backend-dev"
-  project_id      = module.project.project_id
-  region          = var.region
-  container_image = var.backend_image
-
-  environment_variables = {
-    DB_CONNECTION_NAME = module.database.instance_connection_name
-    DB_NAME            = module.database.database_name
-    DB_USER            = var.db_user
-    DB_PASSWORD        = var.db_password
-  }
-
-  labels = {
-    environment = "dev"
-    tier        = "backend"
+    tier        = "client"
   }
 
   depends_on = [module.project]

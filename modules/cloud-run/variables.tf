@@ -51,13 +51,7 @@ variable "min_instances" {
 variable "max_instances" {
   description = "Maximum number of instances"
   type        = number
-  default     = 10
-}
-
-variable "vpc_connector_name" {
-  description = "VPC connector for private connectivity"
-  type        = string
-  default     = null
+  default     = 2
 }
 
 variable "allow_public_access" {

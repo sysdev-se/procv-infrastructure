@@ -34,14 +34,6 @@ resource "google_cloud_run_v2_service" "service" {
       min_instance_count = var.min_instances
       max_instance_count = var.max_instances
     }
-
-    dynamic "vpc_access" {
-      for_each = var.vpc_connector_name != null ? [1] : []
-      content {
-        connector = var.vpc_connector_name
-        egress    = "PRIVATE_RANGES_ONLY"
-      }
-    }
   }
 
   traffic {

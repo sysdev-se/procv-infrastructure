@@ -1,3 +1,8 @@
+variable "environment" {
+  description = "Environment name"
+  type        = string
+}
+
 variable "project_name" {
   description = "Display name of the project"
   type        = string
@@ -24,14 +29,14 @@ variable "region" {
   default     = "asia-southeast1"
 }
 
-variable "frontend_image" {
-  description = "Frontend container image"
+variable "client_image" {
+  description = "Client container image"
   type        = string
   default     = "gcr.io/cloudrun/hello"  # Placeholder
 }
 
-variable "backend_image" {
-  description = "Backend container image"
+variable "server_image" {
+  description = "Server container image"
   type        = string
   default     = "gcr.io/cloudrun/hello"  # Placeholder
 }
