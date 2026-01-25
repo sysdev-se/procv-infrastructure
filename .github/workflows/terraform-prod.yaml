@@ -1,0 +1,11 @@
+name: Placeholder Stage Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: No-op
+        run: echo "prod workflow not implemented yet"
