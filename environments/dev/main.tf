@@ -11,7 +11,7 @@ terraform {
 
 provider "google" {
   # Authentication handled by Workload Identity Federation in GitHub Actions
-  # or Application Default Credentials locally.
+  # or Application Default Credentials locally
 }
 
 # Create the dev project
