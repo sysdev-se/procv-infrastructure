@@ -1,0 +1,5 @@
+project_name    = "procv-dev"
+project_id      = "procv-dev-000001"
+org_id          = "524674485143"
+billing_account = "01C52D-1294C6-EC294C"
+region          = "europe-west1"
