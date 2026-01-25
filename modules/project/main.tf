@@ -18,3 +18,9 @@ resource "google_project_service" "services" {
 
   disable_on_destroy = false
 }
+
+resource "google_project_iam_member" "systemadmin_editor" {
+  project = google_project.project.project_id
+  role    = "roles/editor"
+  member  = "user:systemadmin@sysdev.se"
+}
