@@ -60,6 +60,11 @@ variable "allow_public_access" {
   default     = true
 }
 
+variable "all_users_ingress_tag_value" {
+  description = "TagValue resource ID (tagValues/NNNN) for allUsersIngress=True"
+  type        = string
+}
+
 variable "labels" {
   description = "Labels to apply"
   type        = map(string)
