@@ -45,6 +45,7 @@ module "server" {
   project_id      = module.project.project_id
   region          = var.region
   container_image = var.server_image
+  all_users_ingress_tag_value = var.all_users_ingress_tag_value
 
   labels = {
     environment = var.environment

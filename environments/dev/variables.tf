@@ -58,3 +58,8 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "all_users_ingress_tag_value" {
+  description = "TagValue resource ID for allUsersIngress=True"
+  type        = string
+}

@@ -44,6 +44,12 @@ resource "google_cloud_run_v2_service" "service" {
   labels = var.labels
 }
 
+resource "google_tags_location_tag_binding" "all_users_ingress" {
+  parent   = "//run.googleapis.com/projects/${google_cloud_run_v2_service.service.project}/locations/${google_cloud_run_v2_service.service.location}/services/${google_cloud_run_v2_service.service.name}"
+  tag_value = var.all_users_ingress_tag_value
+  location  = google_cloud_run_v2_service.service.location
+}
+
 # IAM to allow public access (if needed)
 resource "google_cloud_run_v2_service_iam_member" "public_access" {
   count = var.allow_public_access ? 1 : 0
