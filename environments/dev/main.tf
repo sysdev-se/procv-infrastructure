@@ -18,9 +18,9 @@ provider "google" {
 module "project" {
   source = "../../modules/project"
 
-  project_name    = var.project_name
-  project_id      = var.project_id
   org_id          = var.org_id
+  project_id      = var.project_id
+  project_name    = var.project_name
   billing_account = var.billing_account
 
   labels = {
@@ -34,15 +34,15 @@ module "artifact_registry" {
   source = "../../modules/artifact-registry"
 
   project_id    = module.project.project_id
-  region        = var.region
   environment   = var.environment
+  region        = var.region
 }
 
 module "server" {
   source = "../../modules/cloud-run"
 
-  service_name    = "procv-server-dev"
   project_id      = module.project.project_id
+  service_name    = "procv-server-dev"
   region          = var.region
   container_image = var.server_image
   all_users_ingress_tag_value = var.all_users_ingress_tag_value
