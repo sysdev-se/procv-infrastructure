@@ -1,0 +1,26 @@
+resource "google_project_org_policy_policy" "domain_restricted_sharing" {
+  project = var.project_id
+  name    = "projects/${var.project_id}/policies/iam.allowedPolicyMemberDomains"
+
+  spec {
+    rules {
+      condition {
+        expression = "resource.matchTag('${var.org_id}/allUsersIngress', 'True')"
+        title      = "Allow all identities for tagged resources"
+      }
+
+      allow_all = true
+    }
+
+    rules {
+      condition {
+        expression = "true"
+        title      = "Default DRS rule"
+      }
+
+      values {
+        allowed_values = ["C01r8xmnz"]
+      }
+    }
+  }
+}

@@ -29,6 +29,14 @@ module "project" {
     application = "procv"
   }
 }
+// added drs
+module "drs" {
+  source = "../../modules/drs"
+  org_id = var.org_id
+  project_id = var.project_id
+
+  depends_on = [module.project]
+}
 
 module "artifact_registry" {
   source = "../../modules/artifact-registry"
@@ -52,7 +60,7 @@ module "server" {
     tier        = "server"
   }
 
-  depends_on = [module.project]
+  depends_on = [module.project, module.drs]
 }
 
 # Note: Initially, you'll only deploy the project module
