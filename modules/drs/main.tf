@@ -1,6 +1,6 @@
-resource "google_project_org_policy_policy" "domain_restricted_sharing" {
-  project = var.project_id
-  name    = "projects/${var.project_id}/policies/iam.allowedPolicyMemberDomains"
+resource "google_org_policy_policy" "domain_restricted_sharing" {
+  name   = "projects/${var.project_id}/policies/iam.allowedPolicyMemberDomains"
+  parent = "projects/${var.project_id}"
 
   spec {
     rules {
