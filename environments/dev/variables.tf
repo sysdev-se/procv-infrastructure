@@ -18,6 +18,11 @@ variable "org_id" {
   type        = string
 }
 
+variable "google_workspace_customer_id" {
+  description = "The google workspace customer id"
+  type = string
+}
+
 variable "billing_account" {
   description = "Billing account ID"
   type        = string

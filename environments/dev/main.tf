@@ -29,11 +29,12 @@ module "project" {
     application = "procv"
   }
 }
-// added drs
+
 module "drs" {
   source = "../../modules/drs"
   org_id = var.org_id
   project_id = var.project_id
+  google_workspace_customer_id = var.google_workspace_customer_id
 
   depends_on = [module.project]
 }
