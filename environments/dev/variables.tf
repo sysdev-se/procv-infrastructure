@@ -1,10 +1,15 @@
-variable "environment" {
-  description = "Environment name"
+variable "google_workspace_customer_id" {
+  description = "The google workspace customer id"
+  type = string
+}
+
+variable "org_id" {
+  description = "GCP Organization ID"
   type        = string
 }
 
-variable "project_name" {
-  description = "Display name of the project"
+variable "billing_account" {
+  description = "Billing account ID"
   type        = string
 }
 
@@ -13,18 +18,12 @@ variable "project_id" {
   type        = string
 }
 
-variable "org_id" {
-  description = "GCP Organization ID"
+variable "environment" {
+  description = "Environment name"
   type        = string
 }
-
-variable "google_workspace_customer_id" {
-  description = "The google workspace customer id"
-  type = string
-}
-
-variable "billing_account" {
-  description = "Billing account ID"
+variable "project_name" {
+  description = "Display name of the project"
   type        = string
 }
 
@@ -37,7 +36,6 @@ variable "region" {
 variable "client_image" {
   description = "Client container image"
   type        = string
-  default     = "gcr.io/cloudrun/hello"  # Placeholder
 }
 
 variable "server_image" {

@@ -32,36 +32,31 @@ module "project" {
 
 module "drs" {
   source = "../../modules/drs"
-  org_id = var.org_id
   project_id = var.project_id
+  org_id = var.org_id
   google_workspace_customer_id = var.google_workspace_customer_id
-
   depends_on = [module.project]
 }
 
 module "artifact_registry" {
   source = "../../modules/artifact-registry"
-
-  project_id    = module.project.project_id
+  project_id    = var.project_id
   environment   = var.environment
   region        = var.region
 }
 
 module "server" {
   source = "../../modules/cloud-run"
-
-  project_id      = module.project.project_id
-  service_name    = "procv-server-dev"
-  region          = var.region
+  project_id      = var.project_id
+  service_name    = "procv-server-${var.environment}"
   container_image = var.server_image
+  region          = var.region
   all_users_ingress_tag_value = var.all_users_ingress_tag_value
-
   labels = {
     environment = var.environment
     tier        = "server"
   }
-
-  depends_on = [module.project, module.drs]
+  depends_on = [module.project, module.drs, module.artifact_registry]
 }
 
 # Note: Initially, you'll only deploy the project module
