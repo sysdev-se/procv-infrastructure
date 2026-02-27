@@ -36,6 +36,7 @@ variable "region" {
 variable "client_image" {
   description = "Client container image"
   type        = string
+  default     = "gcr.io/cloudrun/hello"
 }
 
 variable "server_image" {
