@@ -45,7 +45,7 @@ resource "google_cloud_run_v2_service" "service" {
 
   lifecycle {
     ignore_changes = [
-      "template.0.containers",
+      template[0].template[0].containers,
     ]
   }
 }
