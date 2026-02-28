@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_service" "service" {
-  name     = var.service_name
   project  = var.project_id
+  name     = var.service_name
   location = var.region
 
   template {
@@ -42,6 +42,12 @@ resource "google_cloud_run_v2_service" "service" {
   }
 
   labels = var.labels
+
+  lifecycle {
+    ignore_changes = [
+      "template.0.containers",
+    ]
+  }
 }
 
 resource "google_tags_location_tag_binding" "all_users_ingress" {
