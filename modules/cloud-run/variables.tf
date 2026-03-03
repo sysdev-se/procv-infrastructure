@@ -33,7 +33,7 @@ variable "cpu_limit" {
 variable "memory_limit" {
   description = "Memory limit"
   type        = string
-  default     = "512Mi"
+  default     = "1Gi"
 }
 
 variable "container_port" {
