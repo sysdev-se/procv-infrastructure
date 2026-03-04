@@ -60,20 +60,20 @@ module "server" {
 }
 
 // I just added this
-# module "dns" {
-#   source     = "../../modules/dns"
-#   project_id = var.project_id
-#   domain     = "sysdev.se."
-#
-#   records = [
-#     {
-#       name    = "api.dev.procv.sysdev.se."
-#       type    = "CNAME"
-#       ttl     = 300
-#       rrdatas = ["procv-server-dev-970065566826.europe-west1.run.app."]
-#     }
-#   ]
-# }
+module "dns" {
+  source     = "../../modules/dns"
+  project_id = var.project_id
+  domain     = "sysdev.se."
+
+  records = [
+    {
+      name    = "api.dev.procv.sysdev.se."
+      type    = "CNAME"
+      ttl     = 300
+      rrdatas = ["procv-server-dev-970065566826.europe-west1.run.app."]
+    }
+  ]
+}
 
 # Note: Initially, you'll only deploy the project module
 # Uncomment the modules below once the project is created and you're ready to deploy services
