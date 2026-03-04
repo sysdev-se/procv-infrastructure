@@ -7,6 +7,7 @@ resource "google_dns_managed_zone" "sysdev_se" {
 
 resource "google_dns_record_set" "records" {
   for_each     = { for r in var.records : r.name => r }
+  project      = var.project_id
   managed_zone = google_dns_managed_zone.sysdev_se.name
   name         = each.value.name
   type         = each.value.type
