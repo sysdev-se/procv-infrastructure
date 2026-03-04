@@ -36,5 +36,6 @@ variable "enabled_apis" {
     "cloudresourcemanager.googleapis.com",
     "iam.googleapis.com",
     "artifactregistry.googleapis.com",
+    "dns.googleapis.com",
   ]
 }
