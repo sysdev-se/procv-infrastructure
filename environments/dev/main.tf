@@ -66,12 +66,51 @@ module "dns" {
   domain     = "sysdev.se."
 
   records = [
+    # Cloud Run subdomain
     {
       name    = "api.dev.procv.sysdev.se."
       type    = "CNAME"
       ttl     = 300
       rrdatas = ["procv-server-dev-970065566826.europe-west1.run.app."]
-    }
+    },
+
+    # MX for sysdev.se (Google Workspace routing)
+    {
+      name    = "sysdev.se."
+      type    = "MX"
+      ttl     = 3600
+      rrdatas = [
+        "1 SMTP.GOOGLE.COM.",
+      ]
+    },
+
+    # TXT google-site-verification #1
+    {
+      name    = "sysdev.se."
+      type    = "TXT"
+      ttl     = 3600
+      rrdatas = [
+        "\"google-site-verification=-CqIb55W1D2jILavmR8TxnehOjH2F7yAVB4fstts8qg\"",
+      ]
+    },
+
+    # TXT google-site-verification #2
+    {
+      name    = "sysdev.se."
+      type    = "TXT"
+      ttl     = 3600
+      rrdatas = [
+        "\"google-site-verification=V1YOpmPPlj6BemlgzOZSqpu6eMh12gbN5t3Hyz9LcQg\"",
+      ]
+    },
+
+    # www.sysdev.se CNAME
+    {
+      name    = "www.sysdev.se."
+      type    = "CNAME"
+      ttl     = 3600
+      rrdatas = ["ghs.googlehosted.com."]
+    },
   ]
 }
 
