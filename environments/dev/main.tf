@@ -90,6 +90,7 @@ module "dns" {
       rrdatas = [
         "\"google-site-verification=-CqIb55W1D2jILavmR8TxnehOjH2F7yAVB4fstts8qg\"",
         "\"google-site-verification=V1YOpmPPlj6BemlgzOZSqpu6eMh12gbN5t3Hyz9LcQg\"",
+        "\"google-site-verification=Iuel8yIcOOnyusEL-gaeePGCXnI_IwRrhZqoDzyGeHQ\"" # new one since 06/03/2026
       ]
     },
     # www.sysdev.se CNAME
