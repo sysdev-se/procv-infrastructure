@@ -52,11 +52,6 @@ jobs:
             -var="db_password=${{ secrets.TF_DEV_DB_PASSWORD }}"
         continue-on-error: true
 
-      - name: Terraform State Cleanup (once)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-        run: |
-          terraform state rm 'module.dns.google_dns_record_set.records["api.dev.procv.sysdev.se."]' || true  
-
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: |
