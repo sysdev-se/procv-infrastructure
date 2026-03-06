@@ -68,25 +68,25 @@ resource "google_cloud_run_v2_service_iam_member" "public_access" {
 }
 
 // new edit
-# resource "google_cloud_run_domain_mapping" "api_domain_mapping" {
-#   name     = "api.dev.procv.sysdev.se"
-#   location = google_cloud_run_v2_service.service.location
-#   project  = google_cloud_run_v2_service.service.project
-#
-#   metadata {
-#     # Must match the project ID that owns the Cloud Run service
-#     namespace = var.project_id
-#   }
-#
-#   spec {
-#     # Must be the Cloud Run service name
-#     route_name = google_cloud_run_v2_service.service.name
-#     # Optional: let Cloud Run manage TLS automatically (default)
-#     certificate_mode = "AUTOMATIC"
-#   }
-#
-#   depends_on = [
-#     google_cloud_run_v2_service.service,
-#     google_cloud_run_v2_service_iam_member.public_access
-#   ]
-# }
+resource "google_cloud_run_domain_mapping" "api_domain_mapping" {
+  name     = "api.dev.procv.sysdev.se"
+  location = google_cloud_run_v2_service.service.location
+  project  = google_cloud_run_v2_service.service.project
+
+  metadata {
+    # Must match the project ID that owns the Cloud Run service
+    namespace = var.project_id
+  }
+
+  spec {
+    # Must be the Cloud Run service name
+    route_name = google_cloud_run_v2_service.service.name
+    # Optional: let Cloud Run manage TLS automatically (default)
+    certificate_mode = "AUTOMATIC"
+  }
+
+  depends_on = [
+    google_cloud_run_v2_service.service,
+    google_cloud_run_v2_service_iam_member.public_access
+  ]
+}
