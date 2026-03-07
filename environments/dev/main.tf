@@ -71,7 +71,7 @@ module "dns" {
       name    = "api.dev.procv.sysdev.se."
       type    = "CNAME"
       ttl     = 300
-      rrdatas = ["procv-server-dev-970065566826.europe-west1.run.app."]
+      rrdatas = ["ghs.googlehosted.com."]
     },
     # MX for sysdev.se (Google Workspace routing)
     {
